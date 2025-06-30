@@ -1,0 +1,11 @@
+google-api-python-client==2.128.0
+google-auth==2.27.0
+google-auth-oauthlib==1.2.0
+google-auth-httplib2==0.2.0
+supabase==2.3.4
+exponent-server-sdk==2.0.0
+psycopg[binary]==3.2.1
+python-dotenv==1.0.0
+pytest==7.4.4
+pytest-asyncio==0.23.2
+pytest-mock==3.12.0

@@ -1,0 +1,55 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: reminder-worker
+  namespace: default
+spec:
+  schedule: "*/1 * * * *"  # Every minute
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: reminder-worker
+            image: reminder-worker:latest
+            env:
+            - name: EXPO_PUBLIC_SUPABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: reminder-worker-secrets
+                  key: supabase-url
+            - name: SUPABASE_SERVICE_ROLE_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: reminder-worker-secrets
+                  key: supabase-service-role-key
+            - name: GOOGLE_CLIENT_EMAIL
+              valueFrom:
+                secretKeyRef:
+                  name: reminder-worker-secrets
+                  key: google-client-email
+            - name: GOOGLE_PRIVATE_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: reminder-worker-secrets
+                  key: google-private-key
+            - name: GOOGLE_PROJECT_ID
+              valueFrom:
+                secretKeyRef:
+                  name: reminder-worker-secrets
+                  key: google-project-id
+            - name: EXPO_ACCESS_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: reminder-worker-secrets
+                  key: expo-access-token
+            resources:
+              requests:
+                memory: "256Mi"
+                cpu: "100m"
+              limits:
+                memory: "512Mi"
+                cpu: "500m"
+          restartPolicy: OnFailure
+  successfulJobsHistoryLimit: 3
+  failedJobsHistoryLimit: 3
