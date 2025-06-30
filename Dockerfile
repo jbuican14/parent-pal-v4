@@ -5,33 +5,31 @@ WORKDIR /app
 
 # Install system dependencies
 RUN apt-get update && apt-get install -y \
-    gcc \
-    && rm -rf /var/lib/apt/lists/* \
-    && apt-get clean
+    curl \
+    && rm -rf /var/lib/apt/lists/*
 
 # Copy requirements first for better caching
-COPY requirements.txt .
+COPY parser/requirements.txt .
 
 # Install Python dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy application code
-COPY main.py .
+COPY parser/ ./parser/
+COPY prompt/ ./prompt/
+COPY scripts/ ./scripts/
 
 # Create non-root user
-RUN useradd -m -u 1000 emailingest && chown -R emailingest:emailingest /app
-USER emailingest
-
-# Set environment variables
-ENV PYTHONUNBUFFERED=1
-ENV PORT=8080
+RUN useradd -m -u 1000 parser && chown -R parser:parser /app
+USER parser
 
 # Health check
 HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
-    CMD curl -f http://localhost:${PORT}/health || exit 1
+    CMD python -c "import requests; requests.get('http://localhost:11434/api/tags', timeout=5)"
 
-# Expose port
-EXPOSE 8080
+# Set environment variables
+ENV PYTHONPATH=/app
+ENV PYTHONUNBUFFERED=1
 
-# Run the application
-CMD exec functions-framework --target=handle_pubsub --port=${PORT} --host=0.0.0.0
+# Default command
+CMD ["python", "parser/main.py"]
