@@ -47,23 +47,23 @@ export const colors = {
 export const typography = {
   // Font Families
   fontFamily: {
-    primary: 'Inter-Regular',
-    medium: 'Inter-Medium',
-    semiBold: 'Inter-SemiBold',
-    bold: 'Inter-Bold',
+    primary: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+    medium: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+    semiBold: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+    bold: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
   },
   
   // Font Sizes
   fontSize: {
-    xs: 12,
-    sm: 13,
-    base: 14,
-    md: 16,
-    lg: 18,
-    xl: 20,
-    '2xl': 22,
-    '3xl': 24,
-    '4xl': 28,
+    xs: '12px',
+    sm: '13px',
+    base: '14px',
+    md: '16px',
+    lg: '18px',
+    xl: '20px',
+    '2xl': '22px',
+    '3xl': '24px',
+    '4xl': '28px',
   },
   
   // Line Heights
@@ -84,73 +84,55 @@ export const typography = {
 
 // Spacing System (base unit: 4px)
 export const spacing = {
-  xs: 4,
-  sm: 8,
-  md: 12,
-  base: 16,
-  lg: 24,
-  xl: 32,
-  '2xl': 48,
-  '3xl': 64,
+  xs: '4px',
+  sm: '8px',
+  md: '12px',
+  base: '16px',
+  lg: '24px',
+  xl: '32px',
+  '2xl': '48px',
+  '3xl': '64px',
 } as const;
 
 // Border Radius
 export const borderRadius = {
-  sm: 8,
-  md: 12,
-  lg: 16,
-  xl: 20,
-  '2xl': 24,
-  full: 9999,
+  sm: '8px',
+  md: '12px',
+  lg: '16px',
+  xl: '20px',
+  '2xl': '24px',
+  full: '9999px',
 } as const;
 
 // Shadows
 export const shadows = {
-  sm: {
-    shadowColor: '#000000',
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.05,
-    shadowRadius: 2,
-    elevation: 2,
-  },
-  md: {
-    shadowColor: '#000000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    elevation: 4,
-  },
-  lg: {
-    shadowColor: '#000000',
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.15,
-    shadowRadius: 8,
-    elevation: 8,
-  },
+  sm: '0 1px 2px 0 rgba(0, 0, 0, 0.05)',
+  md: '0 2px 4px 0 rgba(0, 0, 0, 0.1)',
+  lg: '0 4px 8px 0 rgba(0, 0, 0, 0.15)',
 } as const;
 
 // Component Specific Tokens
 export const components = {
   button: {
     height: {
-      sm: 40,
-      md: 48,
-      lg: 56,
+      sm: '40px',
+      md: '48px',
+      lg: '56px',
     },
     paddingHorizontal: {
-      sm: 16,
-      md: 24,
-      lg: 32,
+      sm: '16px',
+      md: '24px',
+      lg: '32px',
     },
     borderRadius: borderRadius.xl,
   },
   
   input: {
-    height: 48,
-    paddingHorizontal: 12,
-    paddingVertical: 16,
+    height: '48px',
+    paddingHorizontal: '12px',
+    paddingVertical: '16px',
     borderRadius: borderRadius.sm,
-    borderWidth: 2,
+    borderWidth: '2px',
   },
   
   card: {
@@ -161,7 +143,7 @@ export const components = {
   },
   
   bottomNav: {
-    height: 80,
+    height: '80px',
     paddingVertical: spacing.sm,
     borderRadius: borderRadius.lg,
   },
@@ -177,9 +159,9 @@ export const breakpoints = {
 
 // Animation durations
 export const animations = {
-  fast: 150,
-  normal: 300,
-  slow: 500,
+  fast: '150ms',
+  normal: '300ms',
+  slow: '500ms',
 } as const;
 
 // Z-index scale
